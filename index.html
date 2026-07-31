@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A love letter for Radhika — from Hitesh">
+  <title>Hitesh & Radhika — Forever</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== PRELOADER ========== -->
+  <div id="preloader" class="preloader" aria-live="polite" aria-label="Loading">
+    <div class="preloader-inner">
+      <svg class="preloader-heart" viewBox="0 0 100 90" aria-hidden="true">
+        <path class="heart-path" d="M50,88 C50,88 5,55 5,30 C5,15 18,5 32,5 C42,5 50,14 50,14 C50,14 58,5 68,5 C82,5 95,15 95,30 C95,55 50,88 50,88 Z"
+              fill="none" stroke="#6B2737" stroke-width="2"/>
+      </svg>
+      <p class="preloader-text">Loading our story...</p>
+      <p class="preloader-song">🎵 Hawayein</p>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar" id="preloader-bar"></div>
+      </div>
+      <p class="preloader-percent" id="preloader-percent">0%</p>
+    </div>
+  </div>
+
+  <!-- Floating particles canvas -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Music toggle -->
+  <button id="music-toggle" class="music-toggle playing" aria-label="Hawayein playing" title="Hawayein">
+    <span class="music-icon">🎵</span>
+    <span class="music-label">Hawayein</span>
+  </button>
+  <div id="youtube-player" class="youtube-hidden" aria-hidden="true"></div>
+
+  <!-- Video lightbox -->
+  <div id="video-lightbox" class="video-lightbox" hidden>
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+      <video id="lightbox-video" controls playsinline></video>
+    </div>
+  </div>
+
+  <main id="main-content" class="main-content hidden">
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="section hero">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-occasion" id="hero-occasion">Happy Girlfriend Day</p>
+        <h1 class="hero-names">
+          <span id="hero-your-name">Hitesh</span>
+          <span class="hero-amp">&</span>
+          <span id="hero-her-name">Radhika</span>
+        </h1>
+        <p class="hero-tagline" id="hero-tagline">Tu meri duniya ka sabse khoobsurat hissa hai</p>
+        <p class="hero-subline" id="hero-subline">Hum saath hain — aur har din aur zyada special lagta hai</p>
+        <p class="hero-mahadev" id="hero-mahadev">Har Har Mahadev — meri dua hai tu hamesha khush rahe</p>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll down</span>
+        <div class="scroll-chevron"></div>
+      </div>
+    </section>
+
+    <!-- ========== LOVE COUNTER ========== -->
+    <section id="counter" class="section counter-section">
+      <div class="container">
+        <h2 class="section-title reveal">Hum kitne din se ek doosre ke hain...</h2>
+        <p class="section-subtitle reveal">Har second count hota hai — kyunki tu meri zindagi ka hissa hai</p>
+        <div class="counter-grid" id="counter-grid">
+          <div class="counter-card reveal">
+            <span class="counter-value" id="count-days">0</span>
+            <span class="counter-label">Din</span>
+          </div>
+          <div class="counter-card reveal">
+            <span class="counter-value" id="count-hours">0</span>
+            <span class="counter-label">Ghante</span>
+          </div>
+          <div class="counter-card reveal">
+            <span class="counter-value" id="count-minutes">0</span>
+            <span class="counter-label">Minute</span>
+          </div>
+          <div class="counter-card reveal">
+            <span class="counter-value" id="count-seconds">0</span>
+            <span class="counter-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAHADEV BLESSING ========== -->
+    <section id="mahadev" class="section mahadev-section">
+      <div class="mahadev-bg"></div>
+      <div class="container mahadev-content">
+        <div class="om-symbol" aria-hidden="true">ॐ</div>
+        <h2 class="section-title reveal">Mahadev ki blessing</h2>
+        <p class="mahadev-quote reveal">
+          Jis tarah tu Mahadev ko maanti hai, waise hi meri zindagi mein tu meri shanti hai.
+          <br><br>
+          <em>Har Har Mahadev — meri Radhika hamesha khush rahe.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== PHOTO TIMELINE ========== -->
+    <section id="timeline" class="section timeline-section">
+      <div class="container">
+        <h2 class="section-title reveal">Hamari Kahani — Photo by Photo</h2>
+        <p class="section-subtitle reveal">Har photo ek yaad hai, har yaad tumhare saath hai</p>
+      </div>
+      <div class="timeline" id="photo-timeline">
+        <!-- Rendered dynamically from mediaList.js -->
+      </div>
+    </section>
+
+    <!-- ========== FLOWER INTERLUDE ========== -->
+    <section id="flowers" class="section flower-section">
+      <div class="flower-petals" aria-hidden="true"></div>
+      <div class="container flower-content">
+        <div class="flower-icon" aria-hidden="true">🌸</div>
+        <h2 class="section-title reveal">Flowers & You</h2>
+        <p class="flower-quote reveal">
+          Tu flowers se bhi zyada khoobsurat lagti hai, Radhika.
+          <br>
+          Jis tarah flowers khil ke duniya ko khush karte hain — waise hi tu meri duniya ko roshan karti hai.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== VIDEO MEMORIES ========== -->
+    <section id="videos" class="section video-section">
+      <div class="container">
+        <h2 class="section-title reveal">Video Memories</h2>
+        <p class="section-subtitle reveal">Kuch pal video mein capture ho gaye — baaki dil mein</p>
+        <div class="video-carousel" id="video-carousel">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LOVE LETTER ========== -->
+    <section id="letter" class="section letter-section">
+      <div class="container">
+        <h2 class="section-title reveal">Tumhare Liye — Ek Khat</h2>
+        <div class="letter-paper reveal">
+          <div class="letter-body" id="letter-body">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== REASONS ========== -->
+    <section id="reasons" class="section reasons-section">
+      <div class="container">
+        <h2 class="section-title reveal">Reasons I Love You</h2>
+        <p class="section-subtitle reveal">Tap karke kholo — har card ek reason hai</p>
+        <div class="reasons-grid" id="reasons-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CLOSING ========== -->
+    <section id="closing" class="section closing-section">
+      <div class="closing-particles" id="closing-particles" aria-hidden="true"></div>
+      <div class="container closing-content">
+        <div class="closing-heart" aria-hidden="true">❤</div>
+        <h2 class="closing-headline reveal" id="closing-headline">Happy Girlfriend Day, Radhika!</h2>
+        <p class="closing-message reveal" id="closing-message">Tu meri zindagi ki sabse khoobsurat kahani hai. Forever yours.</p>
+        <p class="closing-joke reveal" id="closing-joke"></p>
+        <p class="closing-names reveal">
+          <span id="closing-your-name">Hitesh</span>
+          <span class="closing-heart-small">♥</span>
+          <span id="closing-her-name">Radhika</span>
+        </p>
+        <p class="closing-date reveal">1 August — Girlfriend Day</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Config must load before main script -->
+  <script src="mediaList.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>
